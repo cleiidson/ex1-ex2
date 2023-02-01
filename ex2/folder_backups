@@ -1,0 +1,4 @@
+#diretório usado para apagar o quinto arquivo mais antigo
+diretorio=var/teste
+# verificação da pasta de backups e apagar o quinto arquivo mais antigo
+cd $diretorio | ls -1t | sort | head -n 5 | xargs rm -f

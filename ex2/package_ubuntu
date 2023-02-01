@@ -1,0 +1,10 @@
+apt list --upgradable - listar pacotes que devem ser atualizados
+#verificando se tem atualizaçoes e se tiver atualizar
+if [ -z `apt list --upgradable` ]; then
+  echo "No, it's not running."
+ # Passar mensagem q não tem pacotes
+else
+  echo "Yes, it's running."
+ # Passar comandode atualizar pacote https://linuxhint.com/update_all_packages_ubuntu/
+  
+fi

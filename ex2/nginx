@@ -1,0 +1,8 @@
+#verifica se o Nginx está instalado, se nao, installar 
+diretorio=/var/run/nginx.pid 
+
+if [ -e $diretorio ]; then 
+  echo "nginx is running"; 
+else
+  apt-get install nginx -y
+fi

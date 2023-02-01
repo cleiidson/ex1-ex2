@@ -1,0 +1,41 @@
+version: '2'
+
+services:
+#instalação do adminer na porta 9000
+   adminer:
+     image: adminer
+     restart: always
+     ports:
+       - "9080:81"
+       
+       #criação da rede interna para conexão do banco de dados ao wordpress
+   db:
+     image: postgres 
+     volumes:
+       - db_data:/var/lib/postgres
+     restart: always
+     environment:
+      POSTGRES_USER: unicorn_user
+      POSTGRES_PASSWORD: magical_password
+      POSTGRES_DB: rainbow_database
+
+   wordpress:
+     build:
+      dockerfile: Dockerfile
+      context: .
+     depends_on:
+       - db
+     image: wordpress:latest
+     volumes:
+       - lib_wordpress:/var/www/html
+     ports:
+       - "8080:80"
+     restart: always
+     environment:
+       WORDPRESS_DB_HOST: db:3306
+       WORDPRESS_DB_USER: unicorn_user
+       WORDPRESS_DB_PASSWORD: magical_password
+volumes:
+    db_data:
+    lib_wordpress:
+#arquivos do usuario 
